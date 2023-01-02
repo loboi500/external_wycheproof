@@ -1,25 +1,3 @@
-_bouncycastle_jar_rule = """
-java_import(
-    name = "bouncycastle_jar",
-    jars = ["bouncycastle.jar"],
-    visibility = ["//visibility:public"],
- )
-"""
-
-# TODO(ekasper): implement environment invalidation once supported by bazel,
-# see https://bazel.build/designs/2016/10/18/repository-invalidation.html
-# Meanwhile, users have to call 'bazel clean' explicitly when the
-# environment changes.
-def _local_jars_impl(repository_ctx):
-  contents = ""
-  if "WYCHEPROOF_BOUNCYCASTLE_JAR" in repository_ctx.os.environ:
-    repository_ctx.symlink(repository_ctx.os.environ["WYCHEPROOF_BOUNCYCASTLE_JAR"],
-                           "bouncycastle.jar")
-    contents += _bouncycastle_jar_rule
-
-  repository_ctx.file("BUILD", contents)
-
-local_jars = repository_rule(
-    implementation = _local_jars_impl,
-    local = True
-)
+version https://git-lfs.github.com/spec/v1
+oid sha256:31198904e76e5b9a6a9e3a450be2920b7db46cd6ed922c1d5fb0f74fd7c8b294
+size 817
